@@ -39,6 +39,9 @@
 					final.push(result.childNodes[0].nodeValue)
 					result = nodes.iterateNext()
 				}
+				if ((final.length == 1)) {
+					return final[0]
+				}
 				return final
 			}
 
@@ -60,7 +63,7 @@
 							id: xpathQuerry(
 								data,
 								`//row[NAZWA_DOD='województwo' and NAZWA='${el}']/WOJ`
-							).join()
+							)
 						}
 					})
 					console.log(woj_rich)
