@@ -54,11 +54,20 @@
 						data,
 						`//row[NAZWA_DOD='województwo']/NAZWA`
 					)
-					console.log(woj)
-					woj.forEach(el => {
+					let woj_rich = woj.map(el => {
+						return {
+							name: el,
+							id: xpathQuerry(
+								data,
+								`//row[NAZWA_DOD='województwo' and NAZWA='${el}']/WOJ`
+							).join()
+						}
+					})
+					console.log(woj_rich)
+					woj_rich.forEach(el => {
 						let x = document.createElement('div')
 						x.classList.add('wojEl')
-						x.innerHTML = el
+						x.innerHTML = el.name
 						document.getElementById('woj').appendChild(x)
 					})
 				})
