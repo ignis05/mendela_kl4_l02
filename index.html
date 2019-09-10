@@ -6,8 +6,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Document</title>
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			#woj {
+				width: 30%;
+				min-width: 250px;
+				padding: 5px;
+			}
+			.wojEl {
+				border: 2px solid black;
+				margin-top: 2px;
+				padding: 3px;
+			}
+		</style>
 		<script>
-            // executes xpath query on xml object and returns array
+			// executes xpath query on xml object and returns array
 			function xpathQuerry(xml, query) {
 				let final = []
 				let nodes = xml.evaluate(
@@ -23,8 +40,8 @@
 					result = nodes.iterateNext()
 				}
 				return final
-            }
-            
+			}
+
 			fetch('http://localhost:5500/dane.xml')
 				.then(res => res.text())
 				.then(str =>
@@ -33,9 +50,17 @@
 				.then(data => {
 					console.log(data)
 
-					let path = '//row[NAZWA_DOD="województwo"]/NAZWA'
-					let woj = xpathQuerry(data, path)
+					let woj = xpathQuerry(
+						data,
+						`//row[NAZWA_DOD='województwo']/NAZWA`
+					)
 					console.log(woj)
+					woj.forEach(el => {
+						let x = document.createElement('div')
+						x.classList.add('wojEl')
+						x.innerHTML = el
+						document.getElementById('woj').appendChild(x)
+					})
 				})
 		</script>
 	</head>
