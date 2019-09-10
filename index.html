@@ -7,6 +7,24 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Document</title>
 		<script>
+            // executes xpath query on xml object and returns array
+			function xpathQuerry(xml, query) {
+				let final = []
+				let nodes = xml.evaluate(
+					query,
+					xml,
+					null,
+					XPathResult.ANY_TYPE,
+					null
+				)
+				let result = nodes.iterateNext()
+				while (result) {
+					final.push(result.childNodes[0].nodeValue)
+					result = nodes.iterateNext()
+				}
+				return final
+            }
+            
 			fetch('http://localhost:5500/dane.xml')
 				.then(res => res.text())
 				.then(str =>
@@ -16,23 +34,14 @@
 					console.log(data)
 
 					let path = '//row[NAZWA_DOD="województwo"]/NAZWA'
-					let res = []
-
-					let nodes = data.evaluate(
-						path,
-						data,
-						null,
-						XPathResult.ANY_TYPE,
-						null
-					)
-					let result = nodes.iterateNext()
-					while (result) {
-						res.push(result.childNodes[0].nodeValue)
-						result = nodes.iterateNext()
-					}
-					console.log(res)
+					let woj = xpathQuerry(data, path)
+					console.log(woj)
 				})
 		</script>
 	</head>
-	<body></body>
+	<body>
+		<div id="root">
+			<div id="woj"></div>
+		</div>
+	</body>
 </html>
