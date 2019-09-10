@@ -10,7 +10,7 @@ class Main extends React.Component {
 				return { name: name, id: id }
 			}
 		)
-		this.clickHandle = this.clickHandle.bind(this)
+		this.clickHandler = this.clickHandler.bind(this)
 		this.style = {
 			display: 'flex',
 			alignItems: 'flex-start',
@@ -36,7 +36,7 @@ class Main extends React.Component {
 		}
 		return final
 	}
-	clickHandle(e) {
+	clickHandler(e) {
 		this.setState({ vov: e.target.id })
 	}
 	render() {
@@ -46,7 +46,7 @@ class Main extends React.Component {
 					{this.vovs.map(el => (
 						<div
 							key={el.id}
-							onClick={this.clickHandle}
+							onClick={this.clickHandler}
 							className="listEl vovListEl"
 							id={el.id}
 							style={
