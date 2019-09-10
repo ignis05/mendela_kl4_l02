@@ -38,7 +38,7 @@
 		</style>
 		<script>
 			// executes xpath query on xml object and returns array
-			function xpathQuerry(xml, query) {
+			function xpathQuery(xml, query) {
 				let final = []
 				let nodes = xml.evaluate(
 					query,
@@ -66,14 +66,14 @@
 				.then(data => {
 					console.log(data)
 
-					let woj = xpathQuerry(
+					let woj = xpathQuery(
 						data,
 						`//row[NAZWA_DOD='województwo']/NAZWA`
 					)
 					let woj_obj = woj.map(el => {
 						return {
 							name: el,
-							id: xpathQuerry(
+							id: xpathQuery(
 								data,
 								`//row[NAZWA_DOD='województwo' and NAZWA='${el}']/WOJ`
 							)
@@ -82,7 +82,7 @@
 					console.log(woj_obj)
 
 					function displayMiast(woj_id) {
-						let miast = xpathQuerry(
+						let miast = xpathQuery(
 							data,
 							`//row[WOJ='${woj_id}' and (NAZWA_DOD='miasto' or NAZWA_DOD='miasto na prawach powiatu')]/NAZWA`
 						)

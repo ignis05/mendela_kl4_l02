@@ -2,9 +2,9 @@ class Main extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = { vov: null }
-		this.vovs = this.xpathQuerry(`//row[NAZWA_DOD='województwo']/NAZWA`).map(
+		this.vovs = this.xpathQuery(`//row[NAZWA_DOD='województwo']/NAZWA`).map(
 			name => {
-				let id = this.xpathQuerry(
+				let id = this.xpathQuery(
 					`//row[NAZWA_DOD='województwo' and NAZWA='${name}']/WOJ`
 				)
 				return { name: name, id: id }
@@ -17,7 +17,7 @@ class Main extends React.Component {
 			justifyContent: 'flex-start'
 		}
 	}
-	xpathQuerry(query) {
+	xpathQuery(query) {
 		let final = []
 		let nodes = this.props.xml.evaluate(
 			query,
@@ -59,7 +59,7 @@ class Main extends React.Component {
 				</div>
 				<div className="cit">
 					{this.state.vov &&
-						this.xpathQuerry(
+						this.xpathQuery(
 							`//row[WOJ='${this.state.vov}' and (NAZWA_DOD='miasto' or NAZWA_DOD='miasto na prawach powiatu')]/NAZWA`
 						).map((el, i) => (
 							<div key={i} className="listEl">
