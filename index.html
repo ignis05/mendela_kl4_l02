@@ -14,6 +14,23 @@
 				)
 				.then(data => {
 					console.log(data)
+
+					let path = '//row[NAZWA_DOD="województwo"]/NAZWA'
+					let res = []
+
+					let nodes = data.evaluate(
+						path,
+						data,
+						null,
+						XPathResult.ANY_TYPE,
+						null
+					)
+					let result = nodes.iterateNext()
+					while (result) {
+						res.push(result.childNodes[0].nodeValue)
+						result = nodes.iterateNext()
+					}
+					console.log(res)
 				})
 		</script>
 	</head>
