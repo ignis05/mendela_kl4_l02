@@ -85,7 +85,7 @@
 					function displayMiast(woj_id) {
 						let miast = xpathQuery(
 							data,
-							`//row[WOJ='${woj_id}' and (NAZWA_DOD='miasto' or NAZWA_DOD='miasto na prawach powiatu')]/NAZWA`
+							`//row[WOJ='${woj_id}' and (NAZWA_DOD='miasto' or NAZWA_DOD='miasto na prawach powiatu' or NAZWA_DOD='miasto stołeczne, na prawach powiatu')]/NAZWA`
 						)
 						console.log(miast)
 						document.getElementById('miast').innerHTML = ''

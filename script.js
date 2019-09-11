@@ -60,7 +60,7 @@ class Main extends React.Component {
 				<div className="cit">
 					{this.state.vov &&
 						this.xpathQuery(
-							`//row[WOJ='${this.state.vov}' and (NAZWA_DOD='miasto' or NAZWA_DOD='miasto na prawach powiatu')]/NAZWA`
+							`//row[WOJ='${this.state.vov}' and (NAZWA_DOD='miasto' or NAZWA_DOD='miasto na prawach powiatu' or NAZWA_DOD='miasto stołeczne, na prawach powiatu')]/NAZWA`
 						).map((el, i) => (
 							<div key={i} className="listEl">
 								{el}
